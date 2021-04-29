@@ -11,11 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
 
-const port = process.env.PORT || 8080; // set our port
+const port = process.env.PORT || 6800; // set our port
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/covid-19'); // connect to our database
+mongoose.connect('mongodb://localhost:27017/ambient_db'); // connect to our database
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -33,7 +33,7 @@ router.use(function(req, res, next) {
 });
 
 
-app.use('/api/patients', require('./routes/patient'));
+app.use('/api/coordinates', require('./routes/coordinate'));
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
